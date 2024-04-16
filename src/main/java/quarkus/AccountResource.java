@@ -15,4 +15,9 @@ public class AccountResource {
     public Set<Account> allAccounts() {
         return Collections.emptySet();
     }
+
+    @Path("/account")
+    public void newPath() {
+        System.out.printLn("");
+    }
 }
