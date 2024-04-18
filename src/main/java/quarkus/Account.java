@@ -9,12 +9,11 @@ public class Account {
     public BigDecimal balance;
     public AccountStatus accountStatus = AccountStatus.OPEN;
 
-    public Account(Long accountNumber, Long customerNumber, String customerName, BigDecimal balance, AccountStatus accountStatus) {
+    public Account(Long accountNumber, Long customerNumber, String customerName, BigDecimal balance) {
         this.accountNumber = accountNumber;
         this.customerNumber = customerNumber;
         this.customerName = customerName;
         this.balance = balance;
-        this.accountStatus = accountStatus;
     }
 
     public void markOverdrawn() {
