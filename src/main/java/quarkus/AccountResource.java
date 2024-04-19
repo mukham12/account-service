@@ -1,9 +1,7 @@
 package quarkus;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.math.BigDecimal;
@@ -27,8 +25,13 @@ public class AccountResource {
         return accounts;
     }
 
-    @Path("/account")
-    public void newPath() {
-        System.out.println("reached here");
+    @GET
+    @Path("/{accountNumber}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account getAccount(@PathParam("accountNumber") Long accountNumber) {
+        return accounts.stream()
+                .filter(account -> account.getAccountNumber().equals(accountNumber))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Account with ID of " + accountNumber + " not found"));
     }
 }
