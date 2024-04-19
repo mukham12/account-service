@@ -29,6 +29,6 @@ public class AccountResource {
 
     @Path("/account")
     public void newPath() {
-        System.out.println();
+        System.out.println("reached here");
     }
 }
