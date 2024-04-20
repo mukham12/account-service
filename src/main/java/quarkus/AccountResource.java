@@ -34,4 +34,9 @@ public class AccountResource {
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("Account with ID of " + accountNumber + " not found"));
     }
+
+    
+    @GET
+    public Account getByAmount() {}
+
 }
