@@ -3,6 +3,9 @@ package quarkus;
 import jakarta.annotation.PostConstruct;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -35,8 +38,17 @@ public class AccountResource {
                 .orElseThrow(() -> new NotFoundException("Account with ID of " + accountNumber + " not found"));
     }
 
-    
-    @GET
-    public Account getByAmount() {}
 
+    @GET
+    public Account getByAmount() {
+        return null;
+    }
+
+    @Provider
+    public static class ErrorMapper implements ExceptionMapper<Exception> {
+        @Override
+        public Response toResponse(Exception exception) {
+            return null;
+        }
+    }
 }
