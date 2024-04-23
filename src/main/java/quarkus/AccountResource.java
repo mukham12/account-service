@@ -1,6 +1,8 @@
 package quarkus;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.json.Json;
+import jakarta.json.JsonObjectBuilder;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -48,7 +50,17 @@ public class AccountResource {
     public static class ErrorMapper implements ExceptionMapper<Exception> {
         @Override
         public Response toResponse(Exception exception) {
-            return null;
+            int code = 500;
+
+            if (exception instanceof WebApplicationException) {
+                code = ((WebApplicationException) exception).getResponse().getStatus();
+            }
+
+            JsonObjectBuilder entity = Json.createObjectBuilder()
+                    .add("exception", exception.getClass().getName())
+                    .add("code", code);
+
+            return Response.status(code).entity(entity.build()).build();
         }
     }
 }
