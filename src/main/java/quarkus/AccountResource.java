@@ -42,6 +42,7 @@ public class AccountResource {
 
 
     @GET
+    @Path("/{amount}")
     public Account getByAmount() {
         return null;
     }
