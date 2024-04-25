@@ -40,13 +40,6 @@ public class AccountResource {
                 .orElseThrow(() -> new NotFoundException("Account with ID of " + accountNumber + " not found"));
     }
 
-
-    @GET
-    @Path("/{amount}")
-    public Account getByAmount() {
-        return null;
-    }
-
     @Provider
     public static class ErrorMapper implements ExceptionMapper<Exception> {
         @Override
